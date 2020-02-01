@@ -1,4 +1,4 @@
-import firbase from 'firebase'
+import firebase from 'firebase'
 
 // Initialize Firebase
 const firebaseConfig = {

@@ -1,20 +1,23 @@
 'use strict'
-import React from 'react';
+import 'react-native-gesture-handler'
 import { AppRegistry } from 'react-native'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
+import { createAppContainer } from 'react-navigation'
 import SignUp from "./components/SignUp"
 import SignIn from "./components/SignIn"
 import Rooms from "./components/Rooms"
 import Messages from "./components/Messages"
 
-const RootNavigator = StackNavigator(
+const RootNavigator = createStackNavigator(
   {
     SignIn: { name: 'SignIn', screen: SignIn },
     SignUp: { name: 'SignUp', screen: SignUp },
     Rooms: { name: 'Rooms', screen: Rooms },
     Messages: { name: "Messages", screen: Messages }
   },
-  { headerMode: 'screnn'}  
+  { headerMode: 'screen'}  
 )
 
-AppRegistry.registerComponent('RNFirebaseChat', () => RootNavigator)
+const container = createAppContainer(RootNavigator)
+
+AppRegistry.registerComponent('chatApp', () => container)

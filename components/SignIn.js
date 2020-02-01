@@ -77,7 +77,7 @@ import {
 			underlayColor={'#1E90FF'}
 			onPress={this.signIn.bind(this)}
           >
-            <Text style={styles.authButtonText}>Sign Up</Text>
+            <Text style={styles.authButtonText}>Sign In</Text>
           </TouchableHighlight>
           <TouchableHighlight
             underlayColor={'#1E90FF'}

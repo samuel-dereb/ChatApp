@@ -13,11 +13,44 @@ class Messages extends Component {
 		super(props)
 		const FirebaseDB = firebase.database()
 		const roomKey = this.props.navigation.state.params.roomKey
-		this.messageRef = FirebaseDB.ref(`messages/${roomKey}`)
+		this.messagesRef = FirebaseDB.ref(`messages/${roomKey}`)
 		this.state={
 			user: '',
 			messages: []
 		}
+		this.addMessage = this.addMessage.bind(this)
+	}
+	componentDidMount() {
+		this.setState({ user: firebaseApp.auth().currentUser })
+		this.listenForMessages(this.messagesRef)
+	}
+	listenForMessages(messagesRef) {
+		messagesRef.on('value', (dataSnapshot) => {
+		  var messagesFB = [];
+		  dataSnapshot.forEach((child) => {
+			messagesFB = [({
+			  _id: child.key,
+			  text: child.val().text,
+			  createdAt: child.val().createdAt,
+			  user: {
+				_id: child.val().user._id,
+				name: child.val().user.name
+			  }
+			}), ...messagesFB];
+		  });
+		  this.setState({ messages: messagesFB });
+		});
+	}
+	addMessage(message = {}) {
+		var messages = message[0]
+		this.messagesRef.push({
+			text: messages.text,
+			createdAt: Date.now(),
+			user: {
+				_id: messages.user._id,
+				name: messages.user.name
+			}
+		})
 	}
 	static navigationOptions = ({ navigation }) => ({
 		title: navigation.state.params.roomName,
@@ -30,9 +63,12 @@ class Messages extends Component {
 		<View style={{flex: 1}}>
 			<StatusBar barStyle="light-content"/>
 				<GiftedChat
-				messages={[]}
-				onSend={{}}
-				user={{}}
+				messages={this.state.messages}
+				onSend={this.addMessage}
+				user={{
+					_id: this.state.user.uid,
+					name: this.state.user.email
+				}}
 				/>
 		</View>
 		);

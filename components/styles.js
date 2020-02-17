@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
   roomsHeader: {
     color: '#fff',
     fontSize: 28,
-    top: 20
+    top: 20,
+    marginTop: 20
   },
   roomsInputContainer: {
     alignItems: 'center',

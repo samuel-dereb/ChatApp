@@ -9,7 +9,7 @@ import {
   } from 'react-native';
   import firebaseApp from './firebaseConfig.js';
   import styles from './styles.js';
-  
+
   class SignUp extends Component {
     constructor(props) {
     	super(props)
@@ -55,33 +55,33 @@ import {
           behavior={'position'}
         >
           <StatusBar barStyle='light-content'/>
-          <Text style={styles.appTitle}>Chatypus!</Text>
+          <Text style={styles.appTitle}>Sign Up</Text>
           <Text style={styles.authInputLabel}>Email</Text>
           <TextInput
             style={styles.authTextInput}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
             placeholder={'example@email.com'}
-			placeholderTextColor={'#fff'}
-			onChangeText = {(text) => this.setState({userEmail: text})}
+            placeholderTextColor={'#fff'}
+            onChangeText = {(text) => this.setState({userEmail: text})}
           />
           <Text style={styles.authInputLabel}>Password</Text>
           <TextInput
             secureTextEntry={true}
             style={styles.authTextInput}
             placeholder={'password'}
-			placeholderTextColor={'#fff'}
-			onChangeText = {(text) => this.setState({userPassword: text})}
+            placeholderTextColor={'#fff'}
+            onChangeText = {(text) => this.setState({userPassword: text})}
           />
           <TouchableHighlight style={styles.authButton}
-			underlayColor={'#1E90FF'}
-			onPress={this.signUp.bind(this)}
+            underlayColor={'#1E90FF'}
+            onPress={this.signUp.bind(this)}
           >
             <Text style={styles.authButtonText}>Sign Up</Text>
           </TouchableHighlight>
           <TouchableHighlight
-			underlayColor={'#1E90FF'}
-			onPress={() => this.gotToSignIn}
+            underlayColor={'#1E90FF'}
+            onPress={() => this.gotToSignIn()}
           >
             <Text style={styles.authLowerText}>Go to Sign In</Text>
           </TouchableHighlight>
@@ -89,5 +89,5 @@ import {
       )
     }
   }
-  
+
   export default SignUp;

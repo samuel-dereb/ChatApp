@@ -21,6 +21,10 @@ class Rooms extends Component {
 			rooms: [],
 			newRoom: ''
 		}
+		this.listenForRooms = this.listenForRooms.bind(this)
+		this.addRoom = this.addRoom.bind(this)
+		this.openMessages = this.openMessages.bind(this)
+		this.renderRow = this.renderRow.bind(this)
 	}
 	static navigationOptions = {
 		title: 'Rooms',
@@ -66,7 +70,7 @@ class Rooms extends Component {
 		return (
 		<View style={styles.roomsContainer}>
 			<StatusBar barStyle="light-content"/>
-			<Text style={styles.roomsHeader}>Chatypus</Text>
+			<Text style={styles.roomsHeader}>Chat Rooms</Text>
 			<View style={styles.roomsInputContainer}>
 			<TextInput
 				style={styles.roomsInput}

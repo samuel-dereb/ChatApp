@@ -64,7 +64,7 @@ class Messages extends Component {
 			<StatusBar barStyle="light-content"/>
 				<GiftedChat
 				messages={this.state.messages}
-				onSend={this.addMessage}
+				onSend={this.addMessage()}
 				user={{
 					_id: this.state.user.uid,
 					name: this.state.user.email

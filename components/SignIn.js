@@ -9,7 +9,7 @@ import {
   } from 'react-native';
   import firebaseApp from './firebaseConfig.js';
   import styles from './styles.js';
-  
+
   class SignIn extends Component {
     constructor(props) {
     	super(props)
@@ -19,7 +19,7 @@ import {
         }
     }
     static navigationOptions = {
-      title: 'SignIp',
+      title: 'SignIn',
       header: null
 	}
 	async signIn() {
@@ -45,7 +45,7 @@ import {
 		}
     }
     gotToSignUp() {
-        this.props.navigation.navigate('SignUp')
+        this.props.navigation.navigate("SignUp");
     }
     render() {
       return (
@@ -55,33 +55,33 @@ import {
           behavior={'position'}
         >
           <StatusBar barStyle='light-content'/>
-          <Text style={styles.appTitle}>Chatypus!</Text>
+          <Text style={styles.appTitle}>Sign In</Text>
           <Text style={styles.authInputLabel}>Email</Text>
           <TextInput
             style={styles.authTextInput}
             autoCapitalize={'none'}
             keyboardType={'email-address'}
             placeholder={'example@email.com'}
-			placeholderTextColor={'#fff'}
-			onChangeText = {(text) => this.setState({userEmail: text})}
+            placeholderTextColor={'#fff'}
+            onChangeText = {(text) => this.setState({userEmail: text})}
           />
           <Text style={styles.authInputLabel}>Password</Text>
           <TextInput
             secureTextEntry={true}
             style={styles.authTextInput}
             placeholder={'password'}
-			placeholderTextColor={'#fff'}
-			onChangeText = {(text) => this.setState({userPassword: text})}
+            placeholderTextColor={'#fff'}
+            onChangeText = {(text) => this.setState({userPassword: text})}
           />
           <TouchableHighlight style={styles.authButton}
-			underlayColor={'#1E90FF'}
-			onPress={this.signIn.bind(this)}
+            underlayColor={'#1E90FF'}
+            onPress={this.signIn.bind(this)}
           >
             <Text style={styles.authButtonText}>Sign In</Text>
           </TouchableHighlight>
           <TouchableHighlight
             underlayColor={'#1E90FF'}
-            onPress={() => this.gotToSignUp}
+            onPress={() => this.gotToSignUp()}
           >
             <Text style={styles.authLowerText}>Go to Sign Up</Text>
           </TouchableHighlight>
@@ -89,5 +89,5 @@ import {
       )
     }
   }
-  
+
   export default SignIn;

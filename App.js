@@ -13,9 +13,9 @@ const RootNavigator = createStackNavigator(
     SignIn: { name: 'SignIn', screen: SignIn },
     SignUp: { name: 'SignUp', screen: SignUp },
     Rooms: { name: 'Rooms', screen: Rooms },
-    Messages: { name: "Messages", screen: Messages }
+    Messages: { name: "Messages", screen: Messages },
   },
-  { headerMode: 'screen'}  
+  { headerMode: 'screen'}
 )
 
 const container = createAppContainer(RootNavigator)

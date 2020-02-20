@@ -11,14 +11,13 @@ import styles from './styles.js';
 class Messages extends Component {
 	constructor(props) {
 		super(props)
-		const FirebaseDB = firebase.database()
+		const FirebaseDB = firebaseApp.database()
 		const roomKey = this.props.navigation.state.params.roomKey
 		this.messagesRef = FirebaseDB.ref(`messages/${roomKey}`)
 		this.state={
 			user: '',
 			messages: []
 		}
-		this.addMessage = this.addMessage.bind(this)
 	}
 	componentDidMount() {
 		this.setState({ user: firebaseApp.auth().currentUser })
@@ -43,14 +42,16 @@ class Messages extends Component {
 	}
 	addMessage(message = {}) {
 		var messages = message[0]
-		this.messagesRef.push({
-			text: messages.text,
-			createdAt: Date.now(),
-			user: {
-				_id: messages.user._id,
-				name: messages.user.name
-			}
-		})
+		if(messages) {
+			this.messagesRef.push({
+				text: messages.text,
+				createdAt: Date.now(),
+				user: {
+					_id: messages.user._id,
+					name: messages.user.name
+				}
+			})
+		}
 	}
 	static navigationOptions = ({ navigation }) => ({
 		title: navigation.state.params.roomName,
@@ -64,7 +65,7 @@ class Messages extends Component {
 			<StatusBar barStyle="light-content"/>
 				<GiftedChat
 				messages={this.state.messages}
-				onSend={this.addMessage()}
+				onSend={this.addMessage.bind(this)}
 				user={{
 					_id: this.state.user.uid,
 					name: this.state.user.email
